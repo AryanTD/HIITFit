@@ -31,68 +31,26 @@
 /// THE SOFTWARE.
 
 import SwiftUI
-import AVKit
 
-struct ExerciseView: View {
+struct RatingView: View {
     
-    let videoNames = ["squat", "step-up", "burpee", "sun-salute"]
-    let exerciseNames = ["Squat", "Step Up", "Burpee", "Sun Salute"]
-    let index: Int
-    
-    let interval : TimeInterval = 30
-    @State private var showAlert = false
-    
+    let col1 = UIColor(red:1.0,green:0.349,blue:0.349,alpha:1)
     var body: some View {
-        GeometryReader { geometry in
-            VStack{
-                HeaderView(exerciseName: exerciseNames[index])
-                    .padding(.bottom)
-                if let url = Bundle.main.url(
-                    forResource: videoNames[index],
-                    withExtension: "mp4"){
-                    
-                    VideoPlayer(player: AVPlayer(url: url))
-                        .frame( height: geometry.size.height * 0.45)
-                } else {
-                    Text("Couldn’t find \(videoNames[index]).mp4")
-                     .foregroundColor(.red)
-                }
-                
-                Text(Date().addingTimeInterval(interval), style: .timer)
-                 .font(.system(size: 90))
-                 .foregroundColor(.white)
-                 .background(Color.black)
-                 .cornerRadius(15)
-                 .padding()
-
-                Button("Start/Done") { }
-                 .font(.title3)
-                 .padding()
-
-                RatingView()
-                    .padding()
-
-                Spacer()
-                Button("History") {
-                        showAlert = true
-                    }
-                    .alert(isPresented: $showAlert) {
-                        Alert(
-                            title: Text("There is no history to show")
-                            
-                        )
-                    }
-                    
-                 .padding(.bottom)
+        HStack {
+            ForEach(0 ..< 5) { _ in
+                Image(systemName: "waveform.path.ecg")
+                    .foregroundColor(.gray)
+                    .font(.largeTitle)
+                    .background(Color.red)
+                    .clipShape(Circle())
             }
         }
     }
 }
 
-struct ExerciseView_Previews: PreviewProvider {
+struct RatingView_Previews: PreviewProvider {
     static var previews: some View {
-        ExerciseView(index: 0)
+        RatingView()
+            .previewLayout(.sizeThatFits)
     }
 }
-
-
