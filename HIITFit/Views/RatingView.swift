@@ -34,14 +34,13 @@ import SwiftUI
 
 struct RatingView: View {
     
-    let col1 = UIColor(red:1.0,green:0.349,blue:0.349,alpha:1)
     var body: some View {
         HStack {
             ForEach(0 ..< 5) { _ in
                 Image(systemName: "waveform.path.ecg")
                     .foregroundColor(.gray)
                     .font(.largeTitle)
-                    .background(Color.red)
+                    .background(Color(red: 1, green: 0.349, blue: 0.349))
                     .clipShape(Circle())
             }
         }

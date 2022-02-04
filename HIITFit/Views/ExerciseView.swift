@@ -58,6 +58,7 @@ struct ExerciseView: View {
                      .foregroundColor(.red)
                 }
                 
+                
                 Text(Date().addingTimeInterval(interval), style: .timer)
                  .font(.system(size: 90))
                  .foregroundColor(.white)
